@@ -1,1 +1,0 @@
-# customer-360-sql-mini-project

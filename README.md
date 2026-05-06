@@ -37,6 +37,8 @@ The project contains five relational tables:
 | `04_customer_segments.sql` | Customer segmentation analysis |
 | `05_campaign_performance.sql` | Email campaign performance analysis |
 | `06_data_quality_checks.sql` | Data quality validation queries |
+| `07_create_views.sql` | Creates reusable analytics views |
+| `08_view_analysis.sql` | Example analysis queries using the views |
 
 ## Skills demonstrated
 
@@ -56,6 +58,8 @@ This project demonstrates:
 - data quality checks
 - customer segmentation
 - marketing analytics
+- reusable SQL views
+- analytics layer design
 
 ## Example business questions answered
 

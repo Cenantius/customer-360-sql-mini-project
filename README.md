@@ -27,6 +27,13 @@ The project contains five relational tables:
 | `email_campaigns` | Email campaign metadata |
 | `email_events` | Email opens, clicks and purchase events |
 
+## Documentation
+
+Additional documentation:
+
+- [Data model](docs/data-model.md)
+- [Project architecture](docs/project-architecture.md)
+
 ## SQL files
 
 | File | Description |
@@ -60,6 +67,8 @@ This project demonstrates:
 - marketing analytics
 - reusable SQL views
 - analytics layer design
+- data model documentation
+- data quality validation
 
 ## Example business questions answered
 

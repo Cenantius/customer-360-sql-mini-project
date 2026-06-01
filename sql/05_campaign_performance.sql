@@ -10,7 +10,7 @@ SELECT
     ec.campaign_id,
     ec.campaign_name,
     ec.campaign_type,
-    ec.sent_date,
+    ec.send_date,
     -- Count the rows where the event_type is open and return 1
     COUNT(CASE WHEN ee.event_type = 'open' THEN 1 END) AS opens,
     COUNT(CASE WHEN ee.event_type = 'click' THEN 1 END) AS clicks,
@@ -31,7 +31,7 @@ GROUP BY
     ec.campaign_id,
     ec.campaign_name,
     ec.campaign_type,
-    ec.sent_date
+    ec.send_date
 ORDER BY purchases DESC, clicks DESC;
 
 -- Event breakdown by campaign

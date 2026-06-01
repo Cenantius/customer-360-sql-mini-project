@@ -1,5 +1,5 @@
 INSERT INTO customers 
-(customer_id, first_name, last_name, email, city, age_group, created_at, marketing_consent)
+(customer_id, first_name, last_name, email, city, age_group, signup_date, marketing_consent)
 VALUES
 (1, 'Aino', 'Korhonen', 'aino.korhonen@example.com', 'Helsinki', '25-34', '2024-01-15', 1),
 (2, 'Mikko', 'Laine', 'mikko.laine@example.com', 'Tampere', '35-44', '2024-02-10', 1),
@@ -11,7 +11,7 @@ VALUES
 (8, 'Noora', 'Koskinen', 'noora.koskinen@example.com', 'Lahti', '18-24', '2024-06-11', 1);
 
 INSERT INTO orders
-(order_id, customer_id, order_date, total_amount, status)
+(order_id, customer_id, order_date, order_amount, order_status)
 VALUES
 (1, 1, '2024-02-01', 89.90, 'completed'),
 (2, 1, '2024-03-15', 129.00, 'completed'),
@@ -23,7 +23,7 @@ VALUES
 (8, 8, '2024-07-12', 79.90, 'completed');
 
 INSERT INTO website_sessions
-(session_id, customer_id, session_date, channel, landing_page, device, converted)
+(session_id, customer_id, session_date, channel, landing_page, device_type, converted)
 VALUES
 (1, 1, '2024-02-01', 'organic_search', '/products', 'mobile', 1),
 (2, 1, '2024-03-14', 'email', '/campaign/spring', 'desktop', 1),
@@ -37,14 +37,14 @@ VALUES
 (10, NULL, '2024-07-13', 'organic_search', '/blog', 'mobile', 0);
 
 INSERT INTO email_campaigns
-(campaign_id, campaign_name, campaign_type, sent_date)
+(campaign_id, campaign_name, campaign_type, send_date)
 VALUES
 (1, 'Spring Sale', 'promotion', '2024-03-10'),
 (2, 'Summer Launch', 'promotion', '2024-06-01'),
 (3, 'Welcome Flow', 'automation', '2024-01-01');
 
 INSERT INTO email_events
-(event_id, customer_id, campaign_id, event_type, event_time)
+(event_id, customer_id, campaign_id, event_type, event_date)
 VALUES
 (1, 1, 1, 'open', '2024-03-10 09:15:00'),
 (2, 1, 1, 'click', '2024-03-10 09:20:00'),

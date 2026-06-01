@@ -18,18 +18,18 @@ WITH customer_revenue AS (
         c.age_group,
         COALESCE(SUM(
             CASE
-                WHEN o.status = 'completed' THEN o.total_amount
+                WHEN o.order_status = 'completed' THEN o.order_amount
                 ELSE 0
             END
         ), 0) AS lifetime_value,
         COUNT(
             CASE
-                WHEN o.status = 'completed' THEN o.order_id
+                WHEN o.order_status = 'completed' THEN o.order_id
             END
         ) AS completed_orders,
         MAX(
             CASE
-                WHEN o.status = 'completed' THEN o.order_date
+                WHEN o.order_status = 'completed' THEN o.order_date
             END
         ) AS last_order_date
     -- Select all customers and add in their orders, if there are any
@@ -74,13 +74,13 @@ WITH customer_revenue AS (
         c.customer_id,
         COALESCE(SUM(
             CASE
-                WHEN o.status = 'completed' THEN o.total_amount
+                WHEN o.order_status = 'completed' THEN o.order_amount
                 ELSE 0
             END
         ), 0) AS lifetime_value,
         COUNT(
             CASE
-                WHEN o.status = 'completed' THEN o.order_id
+                WHEN o.order_status = 'completed' THEN o.order_id
             END
         ) AS completed_orders
     FROM customers c

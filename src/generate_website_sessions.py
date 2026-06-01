@@ -26,7 +26,7 @@ def generate_website_sessions(customers_df: pd.DataFrame) -> pd.DataFrame:
 
     session_id = 1
 
-    traffic_sources = [
+    channels = [
         "google",
         "facebook",
         "instagram",
@@ -59,11 +59,11 @@ def generate_website_sessions(customers_df: pd.DataFrame) -> pd.DataFrame:
 
         for _ in range(number_of_sessions):
 
-            traffic_source = random.choice(traffic_sources)
+            channel = random.choice(channels)
 
             # Simple conversion logic:
             # email and paid_search are slightly more likely to convert
-            if traffic_source in ["email", "paid_search"]:
+            if channel in ["email", "paid_search"]:
                 converted = random.choice([True, False, False])
             else:
                 converted = random.choice([True, False, False, False, False])
@@ -75,7 +75,7 @@ def generate_website_sessions(customers_df: pd.DataFrame) -> pd.DataFrame:
                     start_date=customer["signup_date"],
                     end_date="today"
                 ),
-                "traffic_source": traffic_source,
+                "channel": channel,
                 "device_type": random.choice(device_types),
                 "landing_page": random.choice(landing_pages),
                 "converted": converted,

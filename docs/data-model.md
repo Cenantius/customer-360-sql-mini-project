@@ -28,7 +28,7 @@ Key columns:
 | `email` | Customer email address |
 | `city` | Customer city |
 | `age_group` | Customer age group |
-| `created_at` | Date when the customer was created |
+| `signup_date` | Date when the customer was created |
 | `marketing_consent` | Whether the customer has given marketing consent |
 
 ### orders
@@ -44,8 +44,8 @@ Key columns:
 | `order_id` | Unique order identifier |
 | `customer_id` | Customer who placed the order |
 | `order_date` | Date of the order |
-| `total_amount` | Order revenue |
-| `status` | Order status, such as `completed` or `cancelled` |
+| `order_amount` | Order revenue |
+| `order_status` | Order status, such as `completed` or `cancelled` |
 
 Relationship:
 
@@ -64,9 +64,9 @@ Key columns:
 | `session_id` | Unique website session identifier |
 | `customer_id` | Linked customer, if known |
 | `session_date` | Date of the website session |
-| `channel` | Acquisition channel |
+| `channel` | Acquisition source of traffic |
 | `landing_page` | First page visited |
-| `device` | Device type |
+| `device_type` | Device type |
 | `converted` | Whether the session converted |
 
 Relationship:
@@ -88,7 +88,7 @@ Key columns:
 | `campaign_id` | Unique campaign identifier |
 | `campaign_name` | Campaign name |
 | `campaign_type` | Campaign type |
-| `sent_date` | Date when the campaign was sent |
+| `send_date` | Date when the campaign was sent |
 
 ### email_events
 
@@ -104,7 +104,7 @@ Key columns:
 | `customer_id` | Customer linked to the event |
 | `campaign_id` | Campaign linked to the event |
 | `event_type` | Event type: `open`, `click` or `purchase` |
-| `event_time` | Timestamp of the event |
+| `event_date` | Timestamp of the event |
 
 Relationships:
 

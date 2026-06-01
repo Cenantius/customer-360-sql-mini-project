@@ -51,9 +51,9 @@ ORDER BY customer_count DESC;
 -- How much revenue has the company generated from completed orders?
 
 SELECT
-    SUM(total_amount) AS total_revenue
+    SUM(order_amount) AS total_revenue
 FROM orders
-WHERE status = 'completed';
+WHERE order_status = 'completed';
 
 -- 6. Monthly revenue
 -- Business question:
@@ -61,10 +61,10 @@ WHERE status = 'completed';
 
 SELECT
     strftime('%Y-%m', order_date) AS month,
-    SUM(total_amount) AS monthly_revenue,
+    SUM(order_amount) AS monthly_revenue,
     COUNT(*) AS order_count
 FROM orders
-WHERE status = 'completed'
+WHERE order_status = 'completed'
 GROUP BY strftime('%Y-%m', order_date)
 ORDER BY month;
 
@@ -77,12 +77,12 @@ SELECT
     c.first_name,
     c.last_name,
     c.email,
-    COALESCE(SUM(o.total_amount), 0) AS lifetime_value,
+    COALESCE(SUM(o.order_amount), 0) AS lifetime_value,
     COUNT(o.order_id) AS order_count
 FROM customers c
 LEFT JOIN orders o
     ON c.customer_id = o.customer_id
-    AND o.status = 'completed'
+    AND o.order_status = 'completed'
 GROUP BY
     c.customer_id,
     c.first_name,

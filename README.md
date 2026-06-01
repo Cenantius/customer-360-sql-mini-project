@@ -1,8 +1,6 @@
 # Customer 360 SQL Mini Project
 
-This project demonstrates SQL skills through a realistic customer and marketing analytics database.
-
-The goal is to build a small Customer 360 analytics database for a fictional e-commerce company and use SQL to answer business questions about customers, revenue, marketing channels, email campaigns and data quality.
+A portfolio project demonstrating SQL, Python, ETL and analytics engineering concepts using a fictional e-commerce Customer 360 dataset.
 
 ## Business context
 
@@ -23,7 +21,7 @@ The project contains five relational tables:
 |---|---|
 | `customers` | Customer master data such as name, email, city, age group and marketing consent |
 | `orders` | Customer orders, revenue, order date and order status |
-| `website_sessions` | Website visits, acquisition channels, landing pages, devices and conversions |
+| `website_sessions` | Website visits, acquisition channels, landing pages, device types and conversions |
 | `email_campaigns` | Email campaign metadata |
 | `email_events` | Email opens, clicks and purchase events |
 
@@ -46,6 +44,12 @@ Additional documentation:
 | `06_data_quality_checks.sql` | Data quality validation queries |
 | `07_create_views.sql` | Creates reusable analytics views |
 | `08_view_analysis.sql` | Example analysis queries using the views |
+| `09_generated_data_analysis.sql` | Analysis on revenue, completed orders, channel conversion and channel performance |
+| `10_create_analytics_views.sql` | Customer lifetime value and channel conversion performance views |
+| `11_data_quality_checks.sql` | Data quality checks |
+| `12_revenue_trends.sql` | Analysis on revenue trends |
+| `13_rfm_analysis.sql` | Customer analysis on the recency, frequency and monetary metrics |
+| `14_cohort_analysis.sql` | Average completed orders, revenue per customer and total cohort |
 
 ## Skills demonstrated
 
@@ -133,28 +137,18 @@ The data quality checks look for:
 
 ![Channel conversion rate result](docs/images/channel-conversion-rate.png)
 
+### Revenue trends
+
+![Revenue trends](docs/images/revenue-trends.png)
+
 ## How to run with DB Browser for SQLite
 
-1. Open DB Browser for SQLite.
-2. Create or open the database file:
-
-   `data/customer360.db`
-
-3. Open the `Execute SQL` tab.
-4. Run the contents of:
-
-   `sql/01_create_tables.sql`
-
-5. Run the contents of:
-
-   `sql/02_insert_sample_data.sql`
-
-6. Run the analysis queries from:
-
-   - `sql/03_basic_analysis.sql`
-   - `sql/04_customer_segments.sql`
-   - `sql/05_campaign_performance.sql`
-   - `sql/06_data_quality_checks.sql`
+1. Create and activate virtual environment
+2. Install requirements
+3. Generate synthetic datasets
+4. Load datasets into SQLite
+5. Run analysis queries
+6. Run the analysis queries from
 
 ## Project status
 
@@ -174,6 +168,8 @@ This is the first version of the project. Future improvements may include:
 - campaign performance analytics
 - cohort analysis
 - revenue trend analysis
-- analytics view
+- analytics views
 - data quality validation queries
 - ETL-style CSV loading pipeline
+
+## Future Improvements

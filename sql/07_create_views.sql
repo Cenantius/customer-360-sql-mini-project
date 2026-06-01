@@ -17,21 +17,21 @@ SELECT
     c.city,
     c.age_group,
     c.marketing_consent,
-    c.created_at,
+    c.signup_date,
     COALESCE(SUM(
         CASE
-            WHEN o.status = 'completed' THEN o.total_amount
+            WHEN o.order_status = 'completed' THEN o.order_amount
             ELSE 0
         END
     ), 0) AS lifetime_value,
     COUNT(
         CASE
-            WHEN o.status = 'completed' THEN o.order_id
+            WHEN o.order_status = 'completed' THEN o.order_id
         END
     ) AS completed_orders,
     MAX(
         CASE
-            WHEN o.status = 'completed' THEN o.order_date
+            WHEN o.order_status = 'completed' THEN o.order_date
         END
     ) AS last_order_date
 FROM customers c
@@ -45,7 +45,7 @@ GROUP BY
     c.city,
     c.age_group,
     c.marketing_consent,
-    c.created_at;
+    c.signup_date;
 
 -- 2. Customer segments view
 -- Business purpose:
@@ -73,9 +73,9 @@ SELECT
     END AS customer_segment
 FROM customer_360;
 
--- 3. Channel performance view
+-- 3. Traffic source performance view
 -- Business purpose:
--- Calculate sessions, conversions and conversion rate by website acquisition channel.
+-- Calculate sessions, conversions and conversion rate by website acquisition traffic source.
 
 DROP VIEW IF EXISTS channel_performance;
 
@@ -99,7 +99,7 @@ SELECT
     ec.campaign_id,
     ec.campaign_name,
     ec.campaign_type,
-    ec.sent_date,
+    ec.send_date,
     COUNT(CASE WHEN ee.event_type = 'open' THEN 1 END) AS opens,
     COUNT(CASE WHEN ee.event_type = 'click' THEN 1 END) AS clicks,
     COUNT(CASE WHEN ee.event_type = 'purchase' THEN 1 END) AS purchases,
@@ -115,4 +115,4 @@ GROUP BY
     ec.campaign_id,
     ec.campaign_name,
     ec.campaign_type,
-    ec.sent_date;
+    ec.send_date;

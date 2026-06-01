@@ -39,6 +39,15 @@ def generate_customers(number_of_customers: int = 100) -> pd.DataFrame:
         "Lahti",
     ]
 
+    age_groups = [
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+",
+    ]
+
     # range(1, 101) = 1-100
     for customer_id in range(1, number_of_customers + 1):
         first_name = fake.first_name()
@@ -52,6 +61,7 @@ def generate_customers(number_of_customers: int = 100) -> pd.DataFrame:
             # F-string structure (variables can be applied)
             "email": f"{first_name.lower()}.{last_name.lower()}{customer_id}@example.com",
             "city": random.choice(cities),
+            "age_group": random.choice(age_groups),
             "signup_date": fake.date_between(start_date="-2y", end_date="today"),
             "marketing_consent": random.choice([True, False]),
         }

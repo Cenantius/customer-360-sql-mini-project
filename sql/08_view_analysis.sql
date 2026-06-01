@@ -23,7 +23,7 @@ FROM customer_segments
 GROUP BY customer_segment
 ORDER BY customer_count DESC;
 
--- 3. Best converting website channels
+-- 3. Best converting website traffic sources
 
 SELECT
     channel,

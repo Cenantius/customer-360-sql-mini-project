@@ -32,8 +32,8 @@ SELECT
     o.order_id,
     o.customer_id,
     o.order_date,
-    o.total_amount,
-    o.status
+    o.order_amount,
+    o.order_status
 FROM orders o
 LEFT JOIN customers c
     ON o.customer_id = c.customer_id
@@ -47,14 +47,14 @@ SELECT
     order_id,
     customer_id,
     order_date,
-    total_amount,
-    status
+    order_amount,
+    order_status
 FROM orders
-WHERE total_amount < 0;
+WHERE order_amount < 0;
 
--- 5. Website sessions with unknown channels
+-- 5. Website sessions with unknown traffic sources
 -- Business question:
--- Are there website sessions from unexpected acquisition channels?
+-- Are there website sessions from unexpected acquisition traffic sources?
 
 SELECT
     session_id,
@@ -62,7 +62,7 @@ SELECT
     session_date,
     channel,
     landing_page,
-    device,
+    device_type,
     converted
 FROM website_sessions
 -- List of allowed sessions
@@ -83,22 +83,23 @@ SELECT
     customer_id,
     session_date,
     channel,
+    device_type,
     converted
 FROM website_sessions
 WHERE converted NOT IN (0, 1);
 
--- 7. Invalid order status values
+-- 7. Invalid order order_status values
 -- Business question:
--- Are there orders with unexpected status values?
+-- Are there orders with unexpected order_status values?
 
 SELECT
     order_id,
     customer_id,
     order_date,
-    total_amount,
-    status
+    order_amount,
+    order_status
 FROM Orders
-WHERE status NOT IN (
+WHERE order_status NOT IN (
     'completed',
     'cancelled'
 );
@@ -112,7 +113,7 @@ SELECT
     customer_id,
     campaign_id,
     event_type,
-    event_time
+    event_date
 FROM email_events
 WHERE event_type NOT IN (
     'open',
@@ -129,7 +130,7 @@ SELECT
     ee.customer_id,
     ee.campaign_id,
     ee.event_type,
-    ee.event_time
+    ee.event_date
 FROM email_events ee
 LEFT JOIN customers c
     ON ee.customer_id = c.customer_id
@@ -144,7 +145,7 @@ SELECT
     ee.customer_id,
     ee.campaign_id,
     ee.event_type,
-    ee.event_time
+    ee.event_date
 FROM email_events ee
 LEFT JOIN email_campaigns ec
     ON ee.campaign_id = ec.campaign_id
@@ -190,7 +191,7 @@ SELECT
     'negative_order_amounts' AS check_name,
     COUNT(*) AS issue_count
 FROM orders
-WHERE total_amount < 0
+WHERE order_amount < 0
 
 UNION ALL
 
@@ -220,7 +221,7 @@ SELECT
     'invalid_order_statuses' AS check_name,
     COUNT(*) AS issue_count
 FROM orders
-WHERE status NOT IN (
+WHERE order_status NOT IN (
     'completed',
     'cancelled'
 )

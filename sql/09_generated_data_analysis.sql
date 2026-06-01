@@ -35,7 +35,7 @@ ORDER BY total_completed_revenue DESC;
 -- Website channel conversion rate
 
 SELECT
-    traffic_source,
+    channel,
     COUNT(*) AS sessions,
     SUM(CASE WHEN converted = 1 THEN 1 ELSE 0 END) AS conversions,
     ROUND(
@@ -43,7 +43,7 @@ SELECT
         2
     ) AS conversion_rate_percent
 FROM website_sessions
-GROUP BY traffic_source
+GROUP BY channel
 ORDER BY conversion_rate_percent DESC;
 
 -- Email campaign performance

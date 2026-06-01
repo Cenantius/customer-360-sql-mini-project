@@ -30,7 +30,7 @@ DROP VIEW IF EXISTS channel_conversion_performance;
 CREATE VIEW channel_conversion_performance AS
 
 SELECT
-    traffic_source,
+    channel,
     COUNT(*) AS sessions,
     SUM(
         CASE
@@ -49,4 +49,4 @@ SELECT
         2
     ) AS conversion_rate_percent
 FROM website_sessions
-GROUP BY traffic_source;
+GROUP BY channel;

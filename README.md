@@ -165,3 +165,15 @@ This is the first version of the project. Future improvements may include:
 - Power BI or Streamlit dashboard
 - Azure SQL version
 - Databricks / PySpark version
+
+## Current Features
+
+- Python-based synthetic data generation
+- SQLite analytics database
+- customer segmentation analysis
+- campaign performance analytics
+- cohort analysis
+- revenue trend analysis
+- analytics view
+- data quality validation queries
+- ETL-style CSV loading pipeline

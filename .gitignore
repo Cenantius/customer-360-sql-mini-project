@@ -18,3 +18,13 @@ __pycache__/
 # Generated data
 data/raw/*.csv
 data/processed/*.csv
+
+# VS Code settings
+.vscode/
+
+# Jypyter notebooks
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db

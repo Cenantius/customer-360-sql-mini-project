@@ -25,6 +25,16 @@ The project contains five relational tables:
 | `email_campaigns` | Email campaign metadata |
 | `email_events` | Email opens, clicks and purchase events |
 
+## Executive Dashboard
+
+The project includes an interactive Power BI dashboard for customer segmentation, revenue analysis and marketing performance monitoring.
+
+![Executive Dashboard](docs/images/customer360-dashboard-executive.png)
+
+## Marketing Analytics Dashboard
+
+![Marketing Dashboard](docs/images/customer360-dashboard-marketing.png)
+
 ## Documentation
 
 Additional documentation:

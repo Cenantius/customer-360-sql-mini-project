@@ -160,6 +160,72 @@ The data quality checks look for:
 5. Run analysis queries
 6. Run the analysis queries from
 
+## Azure SQL Migration
+
+As part of this project, the local SQLite-based Customer 360 dataset was migrated to Microsoft Azure SQL Database.
+
+### Azure Resources
+
+- Azure SQL Database (Serverless)
+- Azure SQL Server
+- Azure Resource Group
+- SQL Server Management Studio (SSMS)
+
+### Migration Steps
+
+1. Created an Azure SQL Database using Azure for Students.
+2. Configured firewall rules to allow client access.
+3. Connected to the database using SQL Server Management Studio (SSMS).
+4. Recreated the Customer 360 database schema in Azure SQL.
+5. Developed a Python ETL script using:
+   - pandas
+   - pyodbc
+   - python-dotenv
+6. Loaded CSV datasets into Azure SQL tables.
+
+### Data Loaded
+
+| Table | Rows |
+|---------|---------:|
+| customers | 100 |
+| email_campaigns | 10 |
+| orders | 577 |
+| website_sessions | 842 |
+| email_events | 1379 |
+
+### Technologies Used
+
+- Microsoft Azure SQL Database
+- SQL Server Management Studio (SSMS)
+- Python
+- pandas
+- pyodbc
+- python-dotenv
+
+### Validation
+
+After loading the data, table contents were validated directly in Azure SQL using SSMS queries.
+
+Example:
+
+```sql
+SELECT COUNT(*) FROM customers;
+SELECT COUNT(*) FROM orders;
+SELECT COUNT(*) FROM website_sessions;
+SELECT COUNT(*) FROM email_campaigns;
+SELECT COUNT(*) FROM email_events;
+```
+
+### Skills Demonstrated
+
+- Cloud database deployment
+- Azure SQL configuration
+- SQL schema creation
+- ETL pipeline development
+- Python database connectivity
+- Data migration from flat files to cloud database
+- Cloud data validation
+
 ## Project status
 
 This is the first version of the project. Future improvements may include:

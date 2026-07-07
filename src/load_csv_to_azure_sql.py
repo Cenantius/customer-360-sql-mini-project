@@ -43,6 +43,26 @@ def get_connection() -> pyodbc.Connection:
     # Opens the correct database connection and returns it to the rest of the code
     return pyodbc.connect(connection_string)
 
+def clear_tables(connection: pyodbc.Connection) -> None:
+    """
+    Clear Azure SQL tables in the correct order so foreign key constraints are not violated.
+    """
+
+    cursor = connection.cursor()
+
+    tables = [
+        "email_events",
+        "website_sessions",
+        "orders",
+        "email_campaigns",
+        "customers"
+    ]
+
+    for table in tables:
+        cursor.execute(f"DELETE FROM {table};")
+        connection.commit()
+        print(f"Cleared existing Azure SQL table data.")
+
 def load_csv_to_table(
         csv_filename: str,
         table_name: str,
@@ -62,10 +82,6 @@ def load_csv_to_table(
     df = pd.read_csv(csv_path)
 
     cursor = connection.cursor()
-
-    # Clear the existing table before loading fresh data
-    cursor.execute(f"DELETE FROM {table_name};")
-    connection.commit()
 
     columns = list(df.columns)
 
@@ -97,12 +113,13 @@ def main() -> None:
 
     connection = get_connection()
 
-    cursor = connection.cursor()
-
-    cursor.execute("SELECT DB_NAME();")
-    print("Connected to database:", cursor.fetchone()[0])
-
     try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT DB_NAME();")
+        print("Connected to database:", cursor.fetchone()[0])
+
+        clear_tables(connection)
+
         # Load parent tables first
         load_csv_to_table("customers.csv", "customers", connection)
         load_csv_to_table("email_campaigns.csv", "email_campaigns", connection)
